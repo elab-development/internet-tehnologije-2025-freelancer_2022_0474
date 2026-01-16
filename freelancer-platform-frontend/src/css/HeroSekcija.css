@@ -1,0 +1,45 @@
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  height: 90vh;
+  background-image: url('../../public/images/ApartmentCoder.jpg');
+  min-width: 80%;
+  
+}
+.hero-search{
+    margin-top: 20px;
+    background-color: #222;
+    padding: 40px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 10px 20px 30px rgba(0, 0, 0, 0.9);
+    
+}
+.hero-buttons{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+.hero-buttons button{
+    width: 300px;
+}
+.hero-input{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}
+.hero-input input{
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 80%;
+}

@@ -1,0 +1,70 @@
+.registerform-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0px 10px 50px rgba(237, 237, 237, 0.1);
+}
+
+.registerform-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.registerform-title {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.registerform-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.registerform-field label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--secondary-color);
+}
+
+.registerform-field input[type="text"],
+.registerform-field input[type="email"],
+.registerform-field input[type="password"],
+.registerform-field input[type="date"],
+.registerform-field input[type="tel"] {
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.registerform-radio-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.3rem;
+}
+
+.registerform-error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}
+
+.registerform-button {
+  background-color: #14a800;
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+.registerform-button:hover {
+  background-color: #108a00;
+}

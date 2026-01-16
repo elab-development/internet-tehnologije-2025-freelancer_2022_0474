@@ -1,0 +1,11 @@
+.work-page {
+  padding: 60px 10%;
+  background: #f6f7f6;
+  min-height: 100vh;
+}
+
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}

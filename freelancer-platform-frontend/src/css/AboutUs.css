@@ -1,0 +1,72 @@
+.aboutus-section {
+    /* Add your styles here */
+    background-color: #222;
+    padding: 80px;
+    color: #ffffff;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    
+}
+
+.picture-aboutus img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.picture-aboutus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-aboutus {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    justify-content: center;
+    margin: 0px;
+}
+
+.list-aboutus {
+  list-style: none; /* uklanja tačkice */
+  padding: 0;
+}
+
+.list-aboutus li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 8px; /* lepši razmak */
+}
+
+.check-icon {
+  margin-right: 10px;
+  color: var(--primary-color);
+  line-height: 1; /* da nema vertikalnog skoka */
+  flex-shrink: 0; /* sprečava smanjivanje u flex layoutu */
+  font-size: 30px;
+}
+
+@media (max-width: 1024px) {
+  .aboutus-section {
+    grid-template-columns: 1fr; /* umesto dve kolone -> jedna */
+    padding: 40px;
+    margin-top: 50px;
+    position: static;
+    z-index: auto;
+  }
+
+  .picture-aboutus {
+    display: none; /* sakrij celu div sekciju sa slikom */
+  }
+
+  .text-aboutus {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
