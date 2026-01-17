@@ -7,11 +7,14 @@ import Register from "./pages/Register";
 import FindWork from "./pages/FindWork";
 import HireFreelancers from "./pages/HireFreelancers";
 import JobDetails from "./pages/JobDetails";
+import Contact from "./pages/Contact";
+import ScrollToTop from "./components/ScrollToTop";
 
 
 function App() {
   return (
     <BrowserRouter>
+    <ScrollToTop></ScrollToTop>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -19,6 +22,7 @@ function App() {
         <Route path="/freelancers" element={<HireFreelancers />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/job/:id" element={<JobDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

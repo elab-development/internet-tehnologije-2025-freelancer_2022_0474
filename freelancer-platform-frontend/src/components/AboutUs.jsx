@@ -1,7 +1,15 @@
 import React from 'react'
 import { FaCheckCircle } from "react-icons/fa";
 import '../css/AboutUs.css'
+import { useNavigate } from 'react-router-dom';
 const AboutUs = () => {
+
+  const navigate = useNavigate();
+  const handleLearnMore = (e) => {
+    e.preventDefault();
+    navigate('/contact');
+  }
+
   return (
     <section className='aboutus-section'>
       <div className="picture-aboutus">
@@ -16,7 +24,7 @@ const AboutUs = () => {
           <li><FaCheckCircle className="check-icon" /> We have a team of experts with many years of experience</li>
           <li><FaCheckCircle className="check-icon" /> Our clients are satisfied with our services</li>
         </ul>
-        <button>Learn more</button>
+        <button onClick={handleLearnMore}>Learn more</button>
       </div>
     </section>
   )

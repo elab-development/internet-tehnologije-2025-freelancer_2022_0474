@@ -1,0 +1,100 @@
+.socials-section {
+  background-color: #f2f2f2;
+  padding: 50px 20px;
+  text-align: center;
+  border-radius: 15px;
+  margin: 50px auto;
+  max-width: 900px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.socials-section h2 {
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.socials-section p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+.socials {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  justify-items: center;
+}
+
+.social-data {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.social-data:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.social-data svg {
+  font-size: 40px;
+  margin-bottom: 15px;
+  color: #14a800; /* ili promeni po boji društvene mreže */
+}
+
+.social-data a {
+  text-decoration: none;
+  color: #222;
+  font-weight: bold;
+  transition: color 0.2s ease;
+}
+
+.social-data a:hover {
+  color: #14a800;
+}
+
+/* MEDIA QUERY za mobilne uređaje */
+@media (max-width: 768px) {
+  .socials {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .social-data {
+    width: 120px;
+    padding: 20px;
+  }
+
+  .social-data svg {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .socials {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .social-data {
+    width: 100%;
+    max-width: 250px;
+    padding: 20px;
+  }
+
+  .socials-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .socials-section p {
+    font-size: 0.95rem;
+  }
+}
