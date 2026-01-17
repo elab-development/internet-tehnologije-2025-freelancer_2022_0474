@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
 import HeroSekcija from '../components/HeroSekcija'
 import AboutUs from '../components/AboutUs'
 import Track from '../components/Track'

@@ -4,8 +4,10 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
-import FindWork from "./pages/FIndWork";
+import FindWork from "./pages/FindWork";
 import HireFreelancers from "./pages/HireFreelancers";
+import JobDetails from "./pages/JobDetails";
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         <Route path="/freelancers" element={<HireFreelancers />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/job/:id" element={<JobDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

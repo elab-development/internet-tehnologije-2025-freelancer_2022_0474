@@ -1,8 +1,6 @@
 import { ErrorMessage, Field, Formik,Form } from 'formik';
-import React, { useState } from 'react' 
 import * as Yup from 'yup';
 import '../css/Register.css' 
-
 
 const RegisterSchema = Yup.object().shape({ 
   email: Yup.string()
@@ -21,7 +19,7 @@ function Login() {
 
     const handleLoginSubmit = (values) => {
         console.log('Login data:', values);
-        // Dalja obrada registracije (npr. slanje podataka serveru) ide ovde
+
     };
 
     return (
