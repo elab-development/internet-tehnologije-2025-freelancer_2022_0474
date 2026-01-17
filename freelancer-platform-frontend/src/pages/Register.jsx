@@ -10,10 +10,11 @@ const RegisterSchema = Yup.object().shape({
   password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
   passwordConfirmation: Yup.string()
     .oneOf([Yup.ref('password')], 'Passwords do not match')
-    .required('Password confirmation is required')
+    .required('Password confirmation is required'),
+  role: Yup.string().oneOf(['freelancer', 'client'], 'Role is required').required('Role is required')
 });
 
-function RegisterPage() {
+function Register() {
 
   const navigate = useNavigate();
 
@@ -22,27 +23,27 @@ function RegisterPage() {
     lastname: '',
     email: '',
     password: '',
-    passwordConfirmation: ''
+    passwordConfirmation: '',
+    role: ''
   };
 
   const handleRegisterSubmit = (values) => {
+    const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
 
+    const existingUser = registeredUsers.find(user => user.email === values.email);
+    if (existingUser) {
+      alert("This email is already registered. Please login.");
+      return;
+    }
 
-  const registeredUser = JSON.parse(localStorage.getItem("registeredUser"));
+    registeredUsers.push(values);
+    localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
 
+    localStorage.setItem("user", JSON.stringify(values));
 
-  if (registeredUser && registeredUser.email === values.email) {
-    alert("This email is already registered. Please login.");
-    navigate("/login");
-    return;
-  }
-
-  localStorage.setItem("registeredUser", JSON.stringify(values));
-  localStorage.setItem("user", JSON.stringify(values));
-
-  alert('Registration successful!');
-  navigate('/');
-};
+    alert('Registration successful!');
+    navigate('/');
+  };
 
   return (
     <div className="registerform-container">
@@ -84,6 +85,22 @@ function RegisterPage() {
             <ErrorMessage name="passwordConfirmation" component="div" className="registerform-error" />
           </div>
 
+          <div className="registerform-field">
+            <label>Choose a role</label>
+            <div className="registerform-radio-group">
+              <label>
+                <Field type="radio" name="role" value="freelancer" />
+                Freelancer
+              </label>
+              <label>
+                <Field type="radio" name="role" value="client" />
+                Client
+              </label>
+            </div>
+            <ErrorMessage name="role" component="div" className="registerform-error" />
+          </div>
+
+
           <button type="submit" className="registerform-button">Register</button>
 
           <p>Already have an account? <Link to="/login">Login here</Link></p>
@@ -93,4 +110,4 @@ function RegisterPage() {
   );
 }
 
-export default RegisterPage;
+export default Register;

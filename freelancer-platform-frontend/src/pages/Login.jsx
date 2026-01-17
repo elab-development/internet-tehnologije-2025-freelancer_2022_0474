@@ -19,26 +19,30 @@ function Login() {
 
   const handleLoginSubmit = (values) => {
 
-    const registeredUser = JSON.parse(localStorage.getItem("registeredUser"));
+    const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
 
-
-    if (!registeredUser) {
-      alert("No registered user found. Please register first.");
+    if (registeredUsers.length === 0) {
+      alert("No registered users found. Please register first.");
       navigate("/register");
       return;
     }
 
+    const user = registeredUsers.find(u => u.email === values.email);
 
-    if (
-      values.email === registeredUser.email &&
-      values.password === registeredUser.password
-    ) {
-      alert("Login successful!");
-      localStorage.setItem("user", JSON.stringify(registeredUser));
-      navigate("/");
-    } else {
-      alert("Wrong email or password!");
+    if (!user) {
+      alert("Email not registered. Please register first.");
+      navigate("/register");
+      return;
     }
+
+    if (user.password !== values.password) {
+      alert("Wrong password. Try again.");
+      return;
+    }
+
+    localStorage.setItem("user", JSON.stringify(user));
+    alert("Login successful!");
+    navigate("/");
   };
 
   return (

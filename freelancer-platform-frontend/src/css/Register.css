@@ -68,3 +68,8 @@
 .registerform-button:hover {
   background-color: #108a00;
 }
+.registerform-radio-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.3rem;
+}
