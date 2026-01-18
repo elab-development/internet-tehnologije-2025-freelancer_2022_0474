@@ -1,24 +1,77 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import jobs from "../data/jobs";
+import "../css/JobDetails.css";
+
+import { GiMoneyStack } from "react-icons/gi";
+import { FaClock } from "react-icons/fa";
 
 const JobDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const job = jobs.find(j => j.id === Number(id));
 
-  if (!job) return <p>Job not found.</p>;
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+
+  const handleSendOffer = () => {
+    if (!currentUser) {
+      alert("Please log in to send an offer.");
+      navigate("/login");
+      return;
+    }
+
+    if (currentUser.role !== "freelancer") {
+      alert("Only freelancers can send offers.");
+      return;
+    }
+
+    alert(`Offer successfully sent for: ${job.title}`);
+  };
+
+  if (!job) {
+    return (
+      <div className="not-found-job">
+        <h2>Job not found</h2>
+        <button onClick={() => navigate('/work')} className="back-btn-job">
+          Back
+        </button>
+      </div>
+    );
+  }
 
   return (
-    <div style={{ padding: "60px 10%" }}>
-      <h2>{job.title}</h2>
-      <p>{job.description}</p>
-      <p><strong>Budget:</strong> {job.budget}</p>
-      <p><strong>Duration:</strong> {job.duration}</p>
+    <div className="job-details-page">
+      <div className="job-details-card">
 
-      <button>
-        Send Offer
-      </button>
+        <h2>{job.title}</h2>
+        <p className="job-details-title">Job Posting</p>
+
+        <div className="job-details-info">
+          <span style={{ color: "#14a800" }}>
+            <GiMoneyStack /> {job.budget}
+          </span>
+          <span>
+            <FaClock /> {job.duration}
+          </span>
+        </div>
+
+        <p className="job-details-desc">
+          {job.description}
+        </p>
+
+        {job.skills && (
+          <div className="job-details-skills">
+            {job.skills.map((skill, index) => (
+              <span key={index}>{skill}</span>
+            ))}
+          </div>
+        )}
+
+        <button className="job-details-btn" onClick={handleSendOffer}>
+          Send Offer
+        </button>
+      </div>
     </div>
   );
 };

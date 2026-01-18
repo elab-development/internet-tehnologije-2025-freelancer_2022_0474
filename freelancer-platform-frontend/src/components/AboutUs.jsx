@@ -26,6 +26,7 @@ const AboutUs = () => {
         </ul>
         <button onClick={handleLearnMore}>Learn more</button>
       </div>
+      
     </section>
   )
 }

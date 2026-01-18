@@ -19,6 +19,11 @@ const FreelancerDetails = () => {
       navigate("/login");
       return;
     }
+    if (currentUser.role !== "client") {
+      alert("Only clients can hire freelancers.");
+      return;
+    }
+
     alert(`You have hired ${freelancer.name}!`);
   }
 
