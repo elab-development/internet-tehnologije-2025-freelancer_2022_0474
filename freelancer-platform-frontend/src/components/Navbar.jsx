@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import '../css/Navbar.css';
+import { CgProfile } from "react-icons/cg";
 
 export default function Navbar() {
 
@@ -34,7 +35,7 @@ export default function Navbar() {
         {user ? (
           <div className="account-section">
             <Link to="/profile">
-              <span id="account-icon" >👤 {user.firstname}</span>
+              <span id="account-icon" className="profile-icon" ><CgProfile /> {user.firstname}</span>
             </Link>
             <button style={{padding: '5px 10px', marginLeft: '10px'}} id="logout-btn" onClick={handleLogout}>Logout</button>
           </div>

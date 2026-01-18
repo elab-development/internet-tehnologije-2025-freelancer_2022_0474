@@ -1,0 +1,97 @@
+.freelancer-details-page {
+  padding: 60px 10%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.not-found-freelancer {
+  margin: 20px auto;
+  background-color: #f6f6f6;
+  text-align: center;
+  padding: 50px;
+  color: #222;
+    border-radius: 15px;
+    width: 50%;
+    box-shadow: 0 10px 40px rgba(190, 190, 190, 0.3);
+}
+.back-btn {
+  display: inline-block;
+  margin-bottom: 20px;
+  background-color: #14a800;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  
+  border-radius: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+.back-btn:hover {
+  background-color: #108a00;
+}
+
+.freelancer-details-card {
+  background: white;
+  max-width: 600px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(190, 190, 190, 0.3);
+}
+
+.freelancer-details-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.details-title {
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.details-info {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  font-size: 1rem;
+  color: #222;
+}
+
+.details-bio {
+  margin: 20px 0;
+  color: #555;
+}
+
+.details-skills span {
+  background: #e8f7e6;
+  color: #14a800;
+  padding: 6px 10px;
+  border-radius: 15px;
+  font-size: 13px;
+  margin: 3px;
+  display: inline-block;
+}
+
+.details-btn {
+  margin-top: 25px;
+  width: 100%;
+  background-color: #14a800;
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.details-btn:hover {
+  background-color: #108a00;
+}
+.freelancer-details-card h2 {
+  color: #222;
+}

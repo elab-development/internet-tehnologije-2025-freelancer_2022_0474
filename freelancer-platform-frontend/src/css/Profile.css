@@ -1,0 +1,73 @@
+.profile-page {
+  padding: 60px 10%;
+  min-height: 100vh;
+}
+
+.profile-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 2rem;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0px 10px 40px rgba(190, 190, 190, 0.3);
+}
+
+.profile-title {
+  text-align: center;
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 1.5rem;
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.profile-field span {
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 0.3rem;
+}
+
+.profile-field p {
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+    color: #222;
+}
+
+.profile-role {
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.profile-button {
+  width: 100%;
+  background-color: #14a800;
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+
+.profile-button:hover {
+  background-color: #108a00;
+}
+
+.profile-button.logout {
+  background-color: #d9534f;
+}
+
+.profile-button.logout:hover {
+  background-color: #c9302c;
+}
+.title-no-user-found{
+    color: #222;
+}

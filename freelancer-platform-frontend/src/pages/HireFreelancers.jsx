@@ -7,6 +7,8 @@ import FreelancerCard from '../components/FreelancerCard'
 import Track from '../components/Track'
 
 const HireFreelancers = () => {
+
+ 
   return (
     <section>
     <div className="hire-page">
