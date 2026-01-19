@@ -3,6 +3,7 @@ import HeroOtherPages from '../components/HeroOtherPages'
 import '../css/PostJob.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import { useNavigate } from 'react-router-dom'
 
 const PostJobSchema = Yup.object({
         title: Yup.string().required("Job title is required"),
@@ -16,11 +17,33 @@ const PostJobSchema = Yup.object({
         });
 
 const PostJob = () => {
+        const navigate = useNavigate();
+        const handleSubmit = (values, { resetForm }) => {
+        const user = JSON.parse(localStorage.getItem("user"));
+ 
+        if (!user) {
+          alert("You must be logged in to post a job.");
+          navigate("/login"); 
+          return;
+        }
 
-  const handleSubmit = (values, { resetForm }) => {
-    console.log("New Job:", values);
-    resetForm();
-  };
+        if (user.role !== "client") {
+          alert("Only clients can post job listings!");
+          resetForm();
+          return;
+        }
+
+        const newJob = {
+          ...values,
+          clientId: user.id
+        };
+
+        console.log("New Job:", newJob);
+
+        resetForm();
+        alert("Job posted successfully!");
+        navigate("/work");
+};
 
   return (
     <div className="post-job-page">

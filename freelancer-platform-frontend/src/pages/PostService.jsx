@@ -3,6 +3,7 @@ import HeroOtherPages from '../components/HeroOtherPages'
 import '../css/PostService.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
+import { useNavigate } from 'react-router-dom'
 
 const PostFreelancerSchema = Yup.object({
   name: Yup.string().required("Name is required"),
@@ -16,13 +17,31 @@ const PostFreelancerSchema = Yup.object({
 });
 
 const PostService = () => {
-
+  const navigate = useNavigate();
   const handleSubmit = (values, { resetForm }) => {
-    console.log("New Freelancer Ad:", {
-      ...values,
-      skills: values.skills.split(",").map(s => s.trim())
-    });
-    resetForm();
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user){
+      alert("You must be logged in to post a freelancer profile.");
+      navigate("/login");
+      return;
+    }
+    if (user.role !== "freelancer") {
+      alert("Only freelancers can post profiles!");
+      resetForm();
+      return;
+    }
+
+    const newProfile = {
+          ...values,
+          freelancerId: user.id
+        };
+
+        console.log("New Profile:", newProfile);
+
+        resetForm();
+        alert("Profile posted successfully!");
+        navigate("/freelancers");
   };
 
   return (
