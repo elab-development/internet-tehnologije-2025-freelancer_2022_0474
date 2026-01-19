@@ -4,6 +4,7 @@ import JobCard from "../components/JobCard";
 import "../css/FindWork.css";
 import HeroOtherPages from "../components/HeroOtherPages";
 import Track from "../components/Track";
+import { useNavigate } from "react-router-dom";
 
 const FindWork = () => {
 
@@ -17,6 +18,12 @@ const FindWork = () => {
     }, 1000); 
   }, []);
 
+  const navigate = useNavigate();
+
+  const handlePostJob = () => {
+    navigate("/post-job");
+  }
+
   return (
     <section>
       <div className="work-page">
@@ -24,7 +31,10 @@ const FindWork = () => {
           title="Available Jobs" 
           desc="Here you can find various job opportunities tailored to your skills and preferences."
         />
-
+          <div className="post-job-container">
+            <button className="post-job" onClick={handlePostJob}>Post a Job</button>
+          </div>
+          
         {loading ? (
           <p style={{ color: "#222", textAlign: "center", fontSize: "30px" }}>Loading jobs...</p>
         ) : (

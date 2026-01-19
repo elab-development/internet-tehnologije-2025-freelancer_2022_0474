@@ -44,8 +44,10 @@ const JobDetails = () => {
     <div className="job-details-page">
       <div className="job-details-card">
 
-        <h2>{job.title}</h2>
-        <p className="job-details-title">Job Posting</p>
+        <h2 className="job-details-title">{job.title}</h2>
+        <p className="job-details-desc">
+          {job.description}
+        </p>
 
         <div className="job-details-info">
           <span style={{ color: "#14a800" }}>
@@ -55,10 +57,10 @@ const JobDetails = () => {
             <FaClock /> {job.duration}
           </span>
         </div>
-
-        <p className="job-details-desc">
-          {job.description}
+        <p className="job-details-full-desc">
+          {job.detailedDescription || "No additional details provided for this job."}
         </p>
+        
 
         {job.skills && (
           <div className="job-details-skills">

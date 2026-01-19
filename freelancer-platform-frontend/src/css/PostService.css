@@ -1,0 +1,79 @@
+.post-service-page{
+    padding: 60px 10%;
+    background: #f6f7f6;
+    min-height: 100vh;
+}
+    
+.postservice-container {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0px 10px 50px rgba(237, 237, 237, 0.1);
+
+}
+
+.postservice-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.postservice-title {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.postservice-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.postservice-field label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.postservice-field input[type="text"],
+.postservice-field input[type="email"],
+.postservice-field input[type="password"],
+.postservice-field input[type="date"],
+.postservice-field input[type="tel"]{
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  font-size: 1rem;
+  background-color: white;
+  color: #222;
+}
+
+.postservice-field textarea{
+    padding: 0.6rem;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  font-size: 1rem;
+  background-color: white;
+  color: #222;
+  resize: vertical;
+  max-height: 200px;
+  min-height: 80px;
+}
+
+.postservice-radio-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.3rem;
+}
+
+.postservice-error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}

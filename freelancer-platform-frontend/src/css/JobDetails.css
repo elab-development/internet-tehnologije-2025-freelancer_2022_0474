@@ -90,3 +90,7 @@
 .job-details-btn:hover {
   background-color: #108a00;
 }
+.job-details-full-desc {
+  color: #222;
+  text-align: left;
+}

@@ -9,3 +9,19 @@
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 25px;
 }
+
+.post-job-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.post-job{
+  background-color: #14a800;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.post-job:hover{
+  background-color: #108a00;
+}
