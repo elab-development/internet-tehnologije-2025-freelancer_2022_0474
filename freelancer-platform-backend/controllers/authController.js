@@ -22,8 +22,23 @@ exports.register = async (req, res) => {
       password: hashed,
       role
     });
+    const token = jwt.sign(
+      { id: user.id, role: user.role },
+      JWT_SECRET,
+      { expiresIn: "2h" }
+    );
 
-    res.json({ message: "User registered", user });
+    res.json({
+      message: "User registered",
+      token,
+      user: {
+        id: user.id,
+        firstname: user.firstname,
+        lastname: user.lastname,
+        email: user.email,
+        role: user.role
+      }
+    });
   } catch (err) {
     res.status(500).json({ message: "Server error", error: err.message });
   }
