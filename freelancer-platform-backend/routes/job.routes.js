@@ -8,8 +8,12 @@ router.get("/", async (req, res) => {
   const jobs = await Job.findAll();
   res.json(jobs);
 });
-
-router.post("/", auth, async (req, res) => {
+const roleCheck = (role) => (req, res, next) => {
+  if (req.user.role !== role) return res.status(403).json({ message: "Forbidden" });
+  next();
+};
+  
+router.post("/", auth, roleCheck("client"), async (req, res) => {
   try {
     const job = await Job.create({
       ...req.body,

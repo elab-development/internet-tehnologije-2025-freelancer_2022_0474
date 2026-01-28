@@ -40,6 +40,8 @@ function Register() {
     });
 
     localStorage.setItem("user", JSON.stringify(res.data.user));
+    localStorage.setItem("token", res.data.token);
+
 
     alert("Registration successful!");
     navigate("/");
