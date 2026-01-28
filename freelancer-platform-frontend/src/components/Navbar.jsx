@@ -7,13 +7,21 @@ export default function Navbar() {
   const navigate = useNavigate();
 
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = (() => {
+  try {
+    return JSON.parse(localStorage.getItem("user"));
+  } catch {
+    return null;
+  }
+  })();
+
 
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    alert("Logged out successfully!");
-    navigate("/");
+  localStorage.removeItem("user");
+  localStorage.removeItem("token");
+  alert("Logged out successfully!");
+  navigate("/");
   };
 
   return (

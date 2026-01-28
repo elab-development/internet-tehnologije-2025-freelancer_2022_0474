@@ -4,9 +4,6 @@ const db = require("./models");
 const authRoutes = require("./routes/auth.routes");
 const jobRoutes = require("./routes/job.routes");
 
-
-
-
 const app = express();
 
 app.use(cors());

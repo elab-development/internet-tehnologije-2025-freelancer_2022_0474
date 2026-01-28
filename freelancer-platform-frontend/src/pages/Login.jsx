@@ -2,6 +2,7 @@ import { ErrorMessage, Field, Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import '../css/Register.css';
 import { useNavigate, Link } from "react-router-dom";
+import api from "../api/api";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Email not valid').required('Email is required'),
@@ -17,33 +18,23 @@ function Login() {
     password: ''
   };
 
-  const handleLoginSubmit = (values) => {
+  const handleLoginSubmit = async (values) => {
+  try {
+    const res = await api.post("/auth/login", {
+      email: values.email,
+      password: values.password
+    });
 
-    const registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+    localStorage.setItem("user", JSON.stringify(res.data.user));
 
-    if (registeredUsers.length === 0) {
-      alert("No registered users found. Please register first.");
-      navigate("/register");
-      return;
-    }
-
-    const user = registeredUsers.find(u => u.email === values.email);
-
-    if (!user) {
-      alert("Email not registered. Please register first.");
-      navigate("/register");
-      return;
-    }
-
-    if (user.password !== values.password) {
-      alert("Wrong password. Try again.");
-      return;
-    }
-
-    localStorage.setItem("user", JSON.stringify(user));
     alert("Login successful!");
     navigate("/");
-  };
+  } catch (error) {
+    alert(error.response?.data?.message || "Login error");
+  }
+};
+
+
 
   return (
     <div className="registerform-container">

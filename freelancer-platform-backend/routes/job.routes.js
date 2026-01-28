@@ -4,13 +4,11 @@ const auth = require("../middleware/auth.middleware");
 
 const router = express.Router();
 
-// PUBLIC - list jobs
 router.get("/", async (req, res) => {
   const jobs = await Job.findAll();
   res.json(jobs);
 });
 
-// PROTECTED - create job (only logged users)
 router.post("/", auth, async (req, res) => {
   try {
     const job = await Job.create({

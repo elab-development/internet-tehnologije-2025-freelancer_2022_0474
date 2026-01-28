@@ -10,15 +10,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Job.belongsTo(models.User, { foreignKey: 'userId' });
     }
   }
   Job.init({
     title: DataTypes.STRING,
     description: DataTypes.TEXT,
-    budget: DataTypes.STRING,
-    duration: DataTypes.STRING,
-    clientId: DataTypes.INTEGER
+    budget: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Job',
