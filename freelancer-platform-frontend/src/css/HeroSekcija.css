@@ -47,3 +47,46 @@
   background-color: #14a800;
   color: white;
 }
+/* ========== MOBILE RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .hero-container {
+    height: auto;
+    padding: 40px 10px;
+  }
+
+  .hero-container h1 {
+    font-size: 2rem;
+  }
+
+  .hero-container p {
+    font-size: 1rem;
+  }
+
+  .hero-search {
+    padding: 20px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .hero-input {
+    flex-direction: column;
+  }
+
+  .hero-input input,
+  .hero-input .search-btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .hero-input .search-btn {
+    margin-top: 10px;
+  }
+}
