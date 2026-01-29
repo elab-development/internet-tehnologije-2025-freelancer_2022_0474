@@ -25,7 +25,6 @@ export default function Navbar() {
       <div className="left-navbar">
         <img src="../../public/images/logo-upwork.jpg" alt="Logo" />
       </div>
-
       <nav>
         <ul id="navbar-list">
           <li><Link to="/" >Home</Link></li>

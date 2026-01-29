@@ -9,15 +9,25 @@ import Track from '../components/Track'
 import WhyChooseUs from '../components/WhyChooseUs'
 import Newsletter from '../components/Newsletter'
 import SocialSection from '../components/SocialSection'
+import api from "../api/api";
+
 
 const Contact = () => {
 
-    const handleSubmit = (values, { setSubmitting, resetForm }) => {
-        console.log('Form data', values);
-        setSubmitting(false);
-        resetForm();
-        alert('Your message has been sent!');
-    }
+        const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+        try {
+            await api.post("/contact", values);
+
+            alert("Your message has been sent!");
+            resetForm();
+        } catch (error) {
+            console.error(error);
+            alert("Something went wrong. Please try again.");
+        } finally {
+            setSubmitting(false);
+        }
+        };
+
 
   return (
     <>
