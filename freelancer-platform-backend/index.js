@@ -8,12 +8,10 @@ const newsletterRoutes = require("./routes/newsletterRoutes");
 const contactRoutes = require("./routes/contact.routes");
 const adminRoutes = require("./routes/admin.routes");
 
-
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
 app.use("/api/auth", authRoutes);
 app.use("/api/jobs", jobRoutes);
 app.use("/api/newsletter", newsletterRoutes);
