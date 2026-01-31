@@ -13,6 +13,8 @@ import Profile from "./pages/Profile";
 import FreelancerDetails from "./pages/FreelancerDetails";
 import PostJob from "./pages/PostJob";
 import PostService from "./pages/PostService";
+import AdminRoute from "./routes/AdminRoute";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   return (
@@ -31,6 +33,14 @@ function App() {
         <Route path="/post-service" element={<PostService />} />
         <Route path="/job/:id" element={<JobDetails />} />
         <Route path="/freelancers/:id" element={<FreelancerDetails />} />
+        <Route
+              path="/admin"
+              element={
+                <AdminRoute>
+                  <AdminDashboard />
+                </AdminRoute>
+              }
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
