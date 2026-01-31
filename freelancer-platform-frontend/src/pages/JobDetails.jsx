@@ -2,7 +2,6 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import jobs from "../data/jobs";
 import "../css/JobDetails.css";
-
 import { GiMoneyStack } from "react-icons/gi";
 import { FaClock } from "react-icons/fa";
 

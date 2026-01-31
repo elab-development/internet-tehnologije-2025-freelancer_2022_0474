@@ -11,7 +11,6 @@ const FreelancerDetails = () => {
 
   const freelancer = freelancers.find(f => f.id === Number(id));
 
-  
   const currentUser = JSON.parse(localStorage.getItem("user"));
     const handleHireClick = () => {
     if (!currentUser) {

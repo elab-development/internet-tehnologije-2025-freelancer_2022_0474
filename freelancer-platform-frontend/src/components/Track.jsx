@@ -19,7 +19,7 @@ const Track = () => {
             <div className="scrolling-track">
                 {[...services, ...services].map((service, index) => (
                     <div className="scrolling-item" key={index}>
-                        <FaUpwork className="tooth-icon" />
+                        <FaUpwork className="scroll-icon" />
                         <h2>{service}</h2>
                     </div>
                 ))}

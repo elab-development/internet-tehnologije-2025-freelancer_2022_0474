@@ -11,7 +11,6 @@ import Newsletter from '../components/Newsletter'
 import SocialSection from '../components/SocialSection'
 import api from "../api/api";
 
-
 const Contact = () => {
 
         const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -27,7 +26,6 @@ const Contact = () => {
             setSubmitting(false);
         }
         };
-
 
   return (
     <>

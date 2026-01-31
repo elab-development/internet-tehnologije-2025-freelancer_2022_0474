@@ -93,4 +93,4 @@ const PostJob = () => {
     </div>
   )
 }
-export default PostJob
+export default PostJob;

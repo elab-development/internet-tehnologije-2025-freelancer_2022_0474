@@ -32,4 +32,4 @@ const HireFreelancers = () => {
   )
 }
 
-export default HireFreelancers
+export default HireFreelancers;
