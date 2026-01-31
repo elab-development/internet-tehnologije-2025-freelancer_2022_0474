@@ -31,6 +31,9 @@ export default function Navbar() {
           <li><Link to="/work" >Work</Link></li>
           <li><Link to="/freelancers" >Freelancers</Link></li>
           <li><Link to="/contact" >Contact</Link></li>
+          {user?.role === "admin" && (
+          <li><Link to="/admin">Admin Dashboard</Link></li>
+          )}
         </ul>
       </nav>
 
