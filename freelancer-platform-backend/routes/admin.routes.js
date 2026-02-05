@@ -8,5 +8,6 @@ router.get("/users", authMiddleware, isAdmin, adminController.getAllUsers);
 
 router.get("/newsletter",authMiddleware,isAdmin,adminController.getAllNewsletterEmails);
 router.get("/contact",authMiddleware,isAdmin,adminController.getAllContactMessages);
+router.get("/jobs", authMiddleware, isAdmin, adminController.getAllJobs);
 
 module.exports = router;

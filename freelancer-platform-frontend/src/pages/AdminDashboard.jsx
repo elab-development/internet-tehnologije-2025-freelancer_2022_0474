@@ -57,6 +57,21 @@ const AdminDashboard = () => {
     };  
     fetchContactMessages ();
     }, []);
+    const [jobs, setJobs] = useState([]);
+    useEffect(() => {
+    const fetchJobs = async () => {
+        try {
+          const token = localStorage.getItem("token");
+          const res = await api.get("/admin/jobs", {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        setJobs(res.data);
+        } catch (err) {
+        console.error("Admin error:", err);
+        }
+    };
+    fetchJobs();
+    }, []);
 
   return (
     <div style={{ padding: "40px" }}>
@@ -93,6 +108,18 @@ const AdminDashboard = () => {
             {contactMessages.map((message) => (
               <li key={message.id}>
                 {message.email}: {message.message}
+              </li>
+            ))}
+          </ul>
+        )}
+        <h2>Job Postings</h2>
+        {jobs.length === 0 ? (
+          <p>No job postings found</p>
+        ) : (
+          <ul>
+            {jobs.map((job) => (
+              <li key={job.id}>
+                {job.title} - ${job.budget} - {job.duration}
               </li>
             ))}
           </ul>
