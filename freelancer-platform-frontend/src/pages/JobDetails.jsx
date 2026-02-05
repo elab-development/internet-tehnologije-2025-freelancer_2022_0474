@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import jobs from "../data/jobs";
+import api from "../api/api";
 import "../css/JobDetails.css";
 import { GiMoneyStack } from "react-icons/gi";
 import { FaClock } from "react-icons/fa";
@@ -8,10 +8,38 @@ import { FaClock } from "react-icons/fa";
 const JobDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
-  const job = jobs.find(j => j.id === Number(id));
+  const [job, setJob] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const currentUser = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(() => {
+    const fetchJob = async () => {
+      try {
+        const res = await api.get(`/jobs/${id}`);
+        setJob(res.data);
+      } catch {
+        setJob(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJob();
+  }, [id]);
+
+  if (loading) return <p>Loading...</p>;
+
+  if (!job) {
+    return (
+      <div className="not-found-job">
+        <h2>Job not found</h2>
+        <button onClick={() => navigate('/work')} className="back-btn-job">
+          Back
+        </button>
+      </div>
+    );
+  }
 
   const handleSendOffer = () => {
     if (!currentUser) {
@@ -25,53 +53,23 @@ const JobDetails = () => {
       return;
     }
 
-    alert(`Offer successfully sent for: ${job.title}`);
+    alert(`Offer sent for: ${job.title}`);
   };
-
-  if (!job) {
-    return (
-      <div className="not-found-job">
-        <h2>Job not found</h2>
-        <button onClick={() => navigate('/work')} className="back-btn-job">
-          Back
-        </button>
-      </div>
-    );
-  }
 
   return (
     <div className="job-details-page">
       <div className="job-details-card">
-
-        <h2 className="job-details-title">{job.title}</h2>
-        <p className="job-details-desc">
-          {job.description}
-        </p>
+        <h2>{job.title}</h2>
+        <p style={{color: '#222'}}>{job.description}</p>
 
         <div className="job-details-info">
-          <span style={{ color: "#14a800" }}>
-            <GiMoneyStack /> {job.budget}
-          </span>
-          <span>
-            <FaClock /> {job.duration}
-          </span>
+          <span><GiMoneyStack /> ${job.budget}</span>
+          <span><FaClock /> {job.duration}</span>
         </div>
-        <p className="job-details-full-desc">
-          {job.detailedDescription || "No additional details provided for this job."}
-        </p>
-        
 
-        {job.skills && (
-          <div className="job-details-skills">
-            {job.skills.map((skill, index) => (
-              <span key={index}>{skill}</span>
-            ))}
-          </div>
-        )}
+        <p style={{color: '#222'}}>{job.detailedDescription}</p>
 
-        <button className="job-details-btn" onClick={handleSendOffer}>
-          Send Offer
-        </button>
+        <button onClick={handleSendOffer}>Send Offer</button>
       </div>
     </div>
   );

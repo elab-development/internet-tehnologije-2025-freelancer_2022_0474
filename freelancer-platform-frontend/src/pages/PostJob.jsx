@@ -4,6 +4,7 @@ import '../css/PostJob.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom'
+import api from "../api/api";
 
 const PostJobSchema = Yup.object({
         title: Yup.string().required("Job title is required"),
@@ -18,32 +19,32 @@ const PostJobSchema = Yup.object({
 
 const PostJob = () => {
         const navigate = useNavigate();
-        const handleSubmit = (values, { resetForm }) => {
-        const user = JSON.parse(localStorage.getItem("user"));
- 
-        if (!user) {
-          alert("You must be logged in to post a job.");
-          navigate("/login"); 
-          return;
-        }
+        
 
-        if (user.role !== "client") {
-          alert("Only clients can post job listings!");
-          resetForm();
-          return;
-        }
+          const handleSubmit = async (values, { resetForm }) => {
+            const token = localStorage.getItem("token");
 
-        const newJob = {
-          ...values,
-          clientId: user.id
-        };
+            if (!token) {
+              alert("You must be logged in");
+              navigate("/login");
+              return;
+            }
 
-        console.log("New Job:", newJob);
+            try {
+              await api.post("/jobs", values, {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              });
 
-        resetForm();
-        alert("Job posted successfully!");
-        navigate("/work");
-};
+              alert("Job posted successfully!");
+              resetForm();
+              navigate("/work");
+            } catch (err) {
+              alert(err.response?.data?.message || "Error posting job");
+            }
+          };
+
 
   return (
     <div className="post-job-page">

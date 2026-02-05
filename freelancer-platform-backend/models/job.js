@@ -16,6 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   Job.init({
     title: DataTypes.STRING,
     description: DataTypes.TEXT,
+    detailedDescription: DataTypes.TEXT,
+    duration: DataTypes.STRING,
     budget: DataTypes.INTEGER,
     userId: DataTypes.INTEGER
   }, {

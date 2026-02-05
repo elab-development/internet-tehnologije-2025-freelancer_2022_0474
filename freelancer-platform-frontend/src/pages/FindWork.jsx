@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import jobsData from "../data/jobs";
 import JobCard from "../components/JobCard";
 import "../css/FindWork.css";
 import HeroOtherPages from "../components/HeroOtherPages";
 import Track from "../components/Track";
 import { useNavigate } from "react-router-dom";
+import api from "../api/api";
 
 const FindWork = () => {
 
@@ -12,11 +12,19 @@ const FindWork = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setJobs(jobsData);
+  const fetchJobs = async () => {
+    try {
+      const res = await api.get("/jobs");
+      setJobs(res.data);
+    } catch  {
+      console.error("Error loading jobs");
+    } finally {
       setLoading(false);
-    }, 1000); 
-  }, []);
+    }
+  };
+
+  fetchJobs();
+}, []);
 
   const navigate = useNavigate();
 
