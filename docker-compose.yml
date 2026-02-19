@@ -7,6 +7,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root123
       MYSQL_DATABASE: freelancer_platform
+      NODE_ENV: docker
     ports:
       - "3307:3306"
     volumes:
@@ -24,6 +25,7 @@ services:
       DB_USER: root
       DB_PASSWORD: root123
       DB_NAME: freelancer_platform
+      NODE_ENV: docker
 
   frontend:
     build: ./freelancer-platform-frontend
