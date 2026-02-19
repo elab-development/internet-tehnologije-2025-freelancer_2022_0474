@@ -11,6 +11,7 @@ const FindWork = () => {
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const user = JSON.parse(localStorage.getItem("user")) || null;
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -47,9 +48,12 @@ const FindWork = () => {
           title="Available Jobs" 
           desc="Here you can find various job opportunities tailored to your skills and preferences."
         />
+        {user?.role === "client" && (
           <div className="post-job-container">
             <button className="post-job" onClick={handlePostJob}>Post a Job</button>
           </div>
+        )}
+          
           
         {loading ? (
           <p style={{ color: "#222", textAlign: "center", fontSize: "30px" }}>Loading jobs...</p>

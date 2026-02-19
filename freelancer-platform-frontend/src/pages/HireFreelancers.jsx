@@ -9,7 +9,8 @@ import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
 
 const HireFreelancers = () => {
-
+  
+  const user = JSON.parse(localStorage.getItem("user")) || null;
   const location = useLocation();
 const searchParams = new URLSearchParams(location.search);
 const searchQuery = searchParams.get("search")?.toLowerCase() || "";
@@ -27,9 +28,11 @@ const filteredFreelancers = searchQuery
     <section>
     <div className="hire-page">
       <HeroOtherPages title="Hire Freelancers" desc="Find skilled freelancers to help you with your projects."></HeroOtherPages>
+      {user?.role === "freelancer" && (
           <div className="post-service-container">
             <button className="post-service" onClick={handlePostService}>Post a Service</button>
           </div>
+      )}
       <div className="freelancers-grid">
         {filteredFreelancers.map(freelancer => (
           <FreelancerCard key={freelancer.id} freelancer={freelancer} />
