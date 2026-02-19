@@ -23,7 +23,31 @@ app.get("/", (req, res) => {
 });
 
 const PORT = 5000;
-db.sequelize.sync();
+const connectDatabase = async () => {
+  const maxRetries = 10;
+  let retries = 0;
+
+  while (retries < maxRetries) {
+    try {
+      await db.sequelize.authenticate();
+      console.log('✅ Database connected');
+      await db.sequelize.sync();
+      break;
+    } catch (err) {
+      retries++;
+      console.log(`⏳ Database not ready, retrying (${retries}/${maxRetries}) in 2 seconds...`);
+      await new Promise(res => setTimeout(res, 2000));
+    }
+  }
+
+  if (retries === maxRetries) {
+    console.error('❌ Could not connect to database after multiple attempts.');
+    process.exit(1);
+  }
+};
+
+connectDatabase();
+
 app.listen(PORT, () => {
   console.log("Server running on port " + PORT);
 });
