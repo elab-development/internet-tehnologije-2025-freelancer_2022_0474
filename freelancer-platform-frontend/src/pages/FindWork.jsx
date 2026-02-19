@@ -5,12 +5,20 @@ import HeroOtherPages from "../components/HeroOtherPages";
 import Track from "../components/Track";
 import { useNavigate } from "react-router-dom";
 import api from "../api/api";
+import { useLocation } from "react-router-dom";
 
 const FindWork = () => {
 
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const searchQuery = searchParams.get("search")?.toLowerCase() || "";
+
+  const filteredJobs = searchQuery 
+  ? jobs.filter(job => job.title.toLowerCase().includes(searchQuery)) 
+  : jobs;
   useEffect(() => {
   const fetchJobs = async () => {
     try {
@@ -47,7 +55,7 @@ const FindWork = () => {
           <p style={{ color: "#222", textAlign: "center", fontSize: "30px" }}>Loading jobs...</p>
         ) : (
           <div className="jobs-grid">
-            {jobs.map(job => (
+            {filteredJobs.map(job => (
               <JobCard key={job.id} job={job} />
             ))}
           </div>

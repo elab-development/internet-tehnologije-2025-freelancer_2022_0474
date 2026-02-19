@@ -6,8 +6,17 @@ import JobCard from '../components/JobCard'
 import FreelancerCard from '../components/FreelancerCard'
 import Track from '../components/Track'
 import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
 
 const HireFreelancers = () => {
+
+  const location = useLocation();
+const searchParams = new URLSearchParams(location.search);
+const searchQuery = searchParams.get("search")?.toLowerCase() || "";
+
+const filteredFreelancers = searchQuery 
+  ? freelancers.filter(f => f.title.toLowerCase().includes(searchQuery))
+  : freelancers;
 
   const navigate = useNavigate();
 
@@ -22,7 +31,7 @@ const HireFreelancers = () => {
             <button className="post-service" onClick={handlePostService}>Post a Service</button>
           </div>
       <div className="freelancers-grid">
-        {freelancers.map(freelancer => (
+        {filteredFreelancers.map(freelancer => (
           <FreelancerCard key={freelancer.id} freelancer={freelancer} />
         ))}
       </div>

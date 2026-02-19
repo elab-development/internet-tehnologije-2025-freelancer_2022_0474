@@ -6,14 +6,19 @@ const HeroSekcija = () => {
   const navigate = useNavigate();
 
   const [selected, setSelected] = useState();
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = () => {
-    if (selected === "freelancer") {
-      navigate('/freelancers');
-    } else if (selected === "job") {
-      navigate('/work');
-    }
-  };
+  if (!selected) return;
+
+  const query = encodeURIComponent(searchTerm.trim());
+
+  if (selected === "freelancer") {
+    navigate(`/freelancers?search=${query}`);
+  } else if (selected === "job") {
+    navigate(`/work?search=${query}`);
+  }
+};
 
   return (
     <div className='hero-container'>
@@ -38,7 +43,7 @@ const HeroSekcija = () => {
         </div>
 
         <div className="hero-input">
-          <input className='search-input' type="text" placeholder="Search..."/>
+          <input className='search-input' type="text" placeholder="Search..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
           <button className='search-btn' onClick={handleSearch}>Search</button>
         </div>
       </div>
