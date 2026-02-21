@@ -9,6 +9,8 @@ const jobRoutes = require("./routes/job.routes");
 const newsletterRoutes = require("./routes/newsletterRoutes");
 const contactRoutes = require("./routes/contact.routes");
 const adminRoutes = require("./routes/admin.routes");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./swagger");
 
 const app = express();
 
@@ -19,6 +21,7 @@ app.use("/api/jobs", jobRoutes);
 app.use("/api/newsletter", newsletterRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/admin", adminRoutes);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.get("/", (req, res) => {
   res.json({ message: "Backend is running" });

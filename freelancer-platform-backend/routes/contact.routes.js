@@ -1,3 +1,34 @@
+/**
+ * @swagger
+ * /api/contact:
+ *   post:
+ *     summary: Send a contact message
+ *     tags:
+ *       - Contact
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - message
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: user@email.com
+ *               message:
+ *                 type: string
+ *                 example: This is a test message.
+ *     responses:
+ *       200:
+ *         description: Message sent successfully
+ *       400:
+ *         description: All fields are required
+ *       500:
+ *         description: Server error
+ */
 const express = require("express");
 const router = express.Router();
 const db = require("../models");

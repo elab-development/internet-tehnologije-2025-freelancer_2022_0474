@@ -1,3 +1,37 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Profile:
+ *       type: object
+ *       required:
+ *         - bio
+ *         - skills
+ *         - location
+ *         - userId
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: The auto-generated id of the profile
+ *         bio:
+ *           type: string
+ *           description: A short biography of the freelancer
+ *         skills:
+ *           type: string
+ *           description: A comma-separated list of skills
+ *         location:
+ *           type: string
+ *           description: The location of the freelancer
+ *         userId:
+ *           type: integer
+ *           description: The ID of the associated user
+ *       example:
+ *         id: 1
+ *         bio: "Experienced web developer with a passion for creating dynamic and responsive websites."
+ *         skills: "JavaScript, Node.js, React, CSS"
+ *         location: "New York, USA"
+ *         userId: 1
+ */
 'use strict';
 const {
   Model

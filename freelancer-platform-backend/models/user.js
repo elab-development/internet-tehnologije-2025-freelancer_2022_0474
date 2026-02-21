@@ -1,3 +1,42 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - firstname
+ *         - lastname
+ *         - email
+ *         - password
+ *         - role
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: Auto-generated ID of the user
+ *         firstname:
+ *           type: string
+ *           description: First name of the user
+ *         lastname:
+ *           type: string
+ *           description: Last name of the user
+ *         email:
+ *           type: string
+ *           description: Email address of the user
+ *         password:
+ *           type: string
+ *           description: Password for the user account (hashed)
+ *         role:
+ *           type: string
+ *           description: Role of the user (e.g., "client", "freelancer")
+ *       example:
+ *         id: 1
+ *         firstname: "John"
+ *         lastname: "Doe"
+ *         email: "john.doe@example.com"
+ *         password: "$2b$10$..."
+ *         role: "freelancer"
+ */
 'use strict';
 const {
   Model
