@@ -1,47 +1,3 @@
-/**
- * @swagger
- * components:
- *   schemas:
- *     Job:
- *       type: object
- *       required:
- *         - title
- *         - description
- *         - detailedDescription
- *         - duration
- *         - budget
- *         - userId
- *       properties:
- *         id:
- *           type: integer
- *           description: The auto-generated id of the job.
- *         title:
- *           type: string
- *           description: The title of the job.
- *         description:
- *           type: string
- *           description: A short description of the job.
- *         detailedDescription:
- *           type: string
- *           description: A detailed description of the job.
- *         duration:
- *           type: string
- *           description: The expected duration of the job (e.g., "1 week", "2 months").
- *         budget:
- *           type: integer
- *           description: The budget for the job in USD.
- *         userId:
- *           type: integer
- *           description: The ID of the user who posted the job.
- *       example:
- *         id: 1
- *         title: "Build a React Application"
- *         description: "Looking for a developer to build a React application."
- *         detailedDescription: "I need a React developer to create a web application for my business. The application should have user authentication, a dashboard, and integration with a third-party API."
- *         duration: "2 months"
- *         budget: 5000
- *         userId: 1
- */
 'use strict';
 const {
   Model
@@ -54,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Job.belongsTo(models.User, { foreignKey: 'userId' });
+     Job.belongsTo(models.User, { foreignKey: 'userId' });
     }
   }
   Job.init({
