@@ -4,6 +4,7 @@ import '../css/PostService.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom'
+import api from "../api/api";
 
 const PostFreelancerSchema = Yup.object({
   name: Yup.string().required("Name is required"),
@@ -18,31 +19,44 @@ const PostFreelancerSchema = Yup.object({
 
 const PostService = () => {
   const navigate = useNavigate();
-  const handleSubmit = (values, { resetForm }) => {
-    const user = JSON.parse(localStorage.getItem("user"));
+  const handleSubmit = async (values, { resetForm }) => {
+  const user = JSON.parse(localStorage.getItem("user"));
 
-    if (!user){
-      alert("You must be logged in to post a freelancer profile.");
-      navigate("/login");
-      return;
-    }
-    if (user.role !== "freelancer") {
-      alert("Only freelancers can post profiles!");
-      resetForm();
-      return;
-    }
+  if (!user) {
+    alert("You must be logged in.");
+    navigate("/login");
+    return;
+  }
 
-    const newProfile = {
-          ...values,
-          freelancerId: user.id
-        };
+  try {
+    const formData = new FormData();
+      formData.append("name", values.name);
+      formData.append("title", values.title);
+      formData.append("hourlyRate", values.hourlyRate);
+      formData.append("location", values.location);
+      formData.append("skills", values.skills);
+      formData.append("shortBio", values.shortBio);
+      if (values.image) {
+        formData.append("image", values.image);
+      }
 
-        console.log("New Profile:", newProfile);
+    const token = localStorage.getItem("token");
 
-        resetForm();
-        alert("Profile posted successfully!");
-        navigate("/freelancers");
-  };
+    await api.post("/freelancers", formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "multipart/form-data"
+      },
+    });
+
+    alert("Profile created!");
+    resetForm();
+    navigate("/freelancers");
+
+  } catch (err) {
+  alert(err.response?.data?.message || "Error creating profile");
+}
+};
 
   return (
     <div className="post-service-page">
@@ -60,12 +74,13 @@ const PostService = () => {
             hourlyRate: "",
             location: "",
             skills: "",
-            shortBio: ""
+            shortBio: "",
+            image: null
           }}
           validationSchema={PostFreelancerSchema}
           onSubmit={handleSubmit}
         >
-          
+          {({ setFieldValue }) => (
           <Form className="postservice-form">
 
             <div className="postservice-field">
@@ -103,10 +118,21 @@ const PostService = () => {
               <Field name="shortBio" as="textarea" />
               <ErrorMessage name="shortBio" component="div" className="postservice-error" />
             </div>
-
+              <div className="postservice-field">
+                <label>Profile Image</label>
+                <input
+                  name="image"
+                  type="file"
+                  accept="image/*"
+                  onChange={(event) => {
+                    setFieldValue("image", event.currentTarget.files[0]);
+                  }}
+                />
+              </div>
             <button type="submit">Publish Profile</button>
 
           </Form>
+          )}
         </Formik>
       </div>
     </div>

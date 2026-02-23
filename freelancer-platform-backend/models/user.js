@@ -1,3 +1,33 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - firstname
+ *         - lastname
+ *         - email
+ *         - password
+ *         - role
+ *       properties:
+ *        firstname:
+ *         type: string
+ *        lastname:
+ *         type: string
+ *        email:
+ *         type: string
+ *        password:
+ *         type: string
+ *        role:
+ *         type: string
+ *       example: 
+ *         firstname: John
+ *         lastname: Doe
+ *         email: john@example.com
+ *         password: password123
+ *         role: freelancer
+ */
 'use strict';
 const {
   Model

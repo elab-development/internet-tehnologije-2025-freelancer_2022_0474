@@ -1,3 +1,32 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Job:
+ *       type: object
+ *       required:
+ *         - title
+ *         - description
+ *         - duration
+ *         - budget
+ *       properties:
+ *         title:
+ *           type: string
+ *         description:
+ *           type: string
+ *         detailedDescription:
+ *           type: string
+ *         duration:
+ *           type: string
+ *         budget:
+ *           type: integer
+ *       example: 
+ *         title: "Web Development Project"
+ *         description: "Develop a responsive website for a client"
+ *         detailedDescription: "The website should be responsive and accessible on all devices."
+ *         duration: "3 months"
+ *         budget: 5000
+ */
 'use strict';
 const {
   Model

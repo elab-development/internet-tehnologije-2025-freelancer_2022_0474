@@ -42,17 +42,6 @@ const JobDetails = () => {
   }
 
   const handleSendOffer = () => {
-    if (!currentUser) {
-      alert("Please log in to send an offer.");
-      navigate("/login");
-      return;
-    }
-
-    if (currentUser.role !== "freelancer") {
-      alert("Only freelancers can send offers.");
-      return;
-    }
-
     alert(`Offer sent for: ${job.title}`);
   };
 
@@ -68,8 +57,15 @@ const JobDetails = () => {
         </div>
 
         <p style={{color: '#222'}}>{job.detailedDescription}</p>
-
-        <button onClick={handleSendOffer}>Send Offer</button>
+        {currentUser && currentUser.role === "freelancer" && (
+          <button className="details-btn" onClick={handleSendOffer}>Send Offer</button>
+        )}
+        {currentUser && currentUser.role !== "freelancer" && (
+        <button style={{margin: "20px 0 0 0"}}className="back-btn" onClick={() => navigate(`/work`)}>Back</button>
+      )}
+        {!currentUser && (
+        <button style={{margin: "20px 0 0 0"}}className="back-btn" onClick={() => navigate(`/work`)}>Back</button>
+      )}
       </div>
     </div>
   );

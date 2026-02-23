@@ -20,7 +20,7 @@ const JobCard = ({ job }) => {
         <span>⏳ {job.duration}</span>
       </div>
 
-      <button className="job-btn">Apply</button>
+      <button className="job-btn">More Details</button>
     </div>
   );
 };

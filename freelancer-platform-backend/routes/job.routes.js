@@ -43,6 +43,19 @@
  *       500:
  *         description: Server error
  */
+/**
+ * @swagger
+ * /api/jobs:
+ *   get:
+ *     summary: Get all jobs
+ *     description: Returns a list of all job postings
+ *     tags: [Jobs]
+ *     responses:
+ *       200:
+ *         description: List of jobs retrieved successfully
+ *       500:
+ *         description: Server error
+ */
 const express = require("express");
 const router = express.Router();
 const jobController = require("../controllers/jobController");
