@@ -12,9 +12,16 @@ const adminRoutes = require("./routes/admin.routes");
 const swaggerUi = require("swagger-ui-express");
 const swaggerSpec = require("./swagger");
 const freelancerRoutes = require("./routes/freelancer.routes");
+const helmet = require("helmet");
 
 const app = express();
 
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginResourcePolicy: false,
+  })
+);
 app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
