@@ -61,10 +61,10 @@ const JobDetails = () => {
           <button className="details-btn" onClick={handleSendOffer}>Send Offer</button>
         )}
         {currentUser && currentUser.role !== "freelancer" && (
-        <button style={{margin: "20px 0 0 0"}}className="back-btn" onClick={() => navigate(`/work`)}>Back</button>
+        <button style={{margin: "20px 0 0 0"}}className="back-btn" onClick={() => navigate(-1)}>Back</button>
       )}
         {!currentUser && (
-        <button style={{margin: "20px 0 0 0"}}className="back-btn" onClick={() => navigate(`/work`)}>Back</button>
+        <button style={{margin: "20px 0 0 0"}}className="back-btn" onClick={() => navigate(-1)}>Back</button>
       )}
       </div>
     </div>

@@ -72,10 +72,10 @@ useEffect(() => {
         <button className="details-btn" onClick={handleHireClick}>Hire Freelancer</button>
       )}
         {currentUser && currentUser.role !== "client" && (
-        <button style={{margin: "20px 0 0 0"}}className="back-btn" onClick={() => navigate(`/freelancers`)}>Back</button>
+        <button style={{margin: "20px 0 0 0"}}className="back-btn" onClick={() => navigate(-1)}>Back</button>
       )}
         {!currentUser && (
-        <button style={{margin: "20px 0 0 0"}}className="back-btn" onClick={() => navigate(`/freelancers`)}>Back</button>
+        <button style={{margin: "20px 0 0 0"}}className="back-btn" onClick={() => navigate(-1)}>Back</button>
       )}
       </div>
     </div>

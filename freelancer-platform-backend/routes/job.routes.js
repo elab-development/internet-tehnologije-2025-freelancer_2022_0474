@@ -60,10 +60,32 @@ const express = require("express");
 const router = express.Router();
 const jobController = require("../controllers/jobController");
 const authMiddleware = require("../middleware/auth.middleware");
+const { Job } = require("../models");
+
 
 router.get("/", jobController.getAllJobs);
 router.post("/", authMiddleware, jobController.createJob);
 router.get("/:id", jobController.getJobById);
+router.delete("/:id", authMiddleware, async (req, res) => {
+  try {
+    const job = await Job.findByPk(req.params.id);
 
+    if (!job) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+
+    
+    if (job.userId !== req.user.id) {
+      return res.status(403).json({ message: "You can only delete your own job" });
+    }
+
+    await Job.destroy({ where: { id: req.params.id } });
+
+    res.json({ message: "Job deleted successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 module.exports = router;

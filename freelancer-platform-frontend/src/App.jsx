@@ -15,6 +15,7 @@ import PostJob from "./pages/PostJob";
 import PostService from "./pages/PostService";
 import AdminRoute from "./routes/AdminRoute";
 import AdminDashboard from "./pages/AdminDashboard";
+import MyPosts from "./pages/MyPosts";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/my-posts" element={<MyPosts />} />
         <Route path="/post-job" element={<PostJob />} />
         <Route path="/post-service" element={<PostService />} />
         <Route path="/job/:id" element={<JobDetails />} />

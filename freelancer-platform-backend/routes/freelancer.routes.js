@@ -143,4 +143,27 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
+
+router.delete("/:id", authMiddleware, async (req, res) => {
+  try {
+    const freelancer = await Freelancer.findByPk(req.params.id);
+
+    if (!freelancer) {
+      return res.status(404).json({ message: "Freelancer not found" });
+    }
+
+    if (freelancer.userId !== req.user.id) {
+      return res.status(403).json({ message: "You can only delete your own profile" });
+    }
+
+    await Freelancer.destroy({
+      where: { id: req.params.id },
+    });
+
+    res.json({ message: "Freelancer profile deleted successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 module.exports = router;

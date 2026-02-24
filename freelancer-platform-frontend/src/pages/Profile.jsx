@@ -50,7 +50,13 @@ const Profile = () => {
           <span>Role</span>
           <p className="profile-role">{user.role}</p>
         </div>
-
+        {user.role !== "admin" && (
+           <button className="profile-button" onClick={() => navigate('/my-posts')}>
+          View my posts
+          </button>
+        )}
+       
+        
         <button className="profile-button logout" onClick={handleLogout}>
           Logout
         </button>
