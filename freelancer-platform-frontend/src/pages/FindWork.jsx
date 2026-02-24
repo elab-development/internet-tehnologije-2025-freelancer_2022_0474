@@ -6,6 +6,7 @@ import Track from "../components/Track";
 import { useNavigate } from "react-router-dom";
 import api from "../api/api";
 import { useLocation } from "react-router-dom";
+import JobsChart from "../components/JobsChart";
 
 const FindWork = () => {
 
@@ -58,11 +59,15 @@ const FindWork = () => {
         {loading ? (
           <p style={{ color: "#222", textAlign: "center", fontSize: "30px" }}>Loading jobs...</p>
         ) : (
+          <>
+          <JobsChart jobs={jobs} />
           <div className="jobs-grid">
             {filteredJobs.map(job => (
               <JobCard key={job.id} job={job} />
             ))}
           </div>
+          </>
+          
         )}
 
       </div>
